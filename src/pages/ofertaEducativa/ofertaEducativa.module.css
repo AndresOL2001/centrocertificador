@@ -1,0 +1,87 @@
+/* MAIN */
+main {
+    flex: 1;    /* Ocupa el resto de la pagina que deja el Header y Footer */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* main * {
+    border: 1px solid darkgrey;
+} */
+
+main > section {    /* Only direct children */
+    margin-top: 40px;
+}
+
+main > section:first-child {    /* Only the first child of its parent */
+    margin-top: 75px;
+}
+
+main h1, main h2, main h3 {
+    color: rgb(0, 30, 110);
+}
+
+main p {
+    line-height: 25px;
+}
+
+    /* TITLE Section */
+.title {
+    margin-top: 10px;
+    margin-bottom: -10px;
+    font-size: 32px;
+}
+
+    /* DIPLOMADOS Section */
+.diplomados {
+    width: 75%;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.month_year {
+    width: fit-content;
+    font-size: 24px;
+    border-bottom: 3px solid rgb(4, 4, 226);
+}
+
+.diplomados_container {
+    align-self: center;
+
+    margin-top: 15px;
+    width: 100%; /* 90% para checar bordes*/
+
+    display: grid;
+    grid-template-columns: repeat(4, 21%);
+    justify-content: space-between;
+    grid-gap: 30px 10px; /* Filas - Columnas */
+}
+
+.flyer_img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+    main > section:first-child {
+        margin-top: 0;
+    }
+
+    .title {
+        margin-top: 0;
+    }
+
+    .diplomados {
+        width: 95%;
+    }
+
+    .diplomados_container {
+        grid-template-columns: repeat(2, 48%);
+        grid-gap: 30px 5px;
+    }
+}
+/* --- MAIN --- */

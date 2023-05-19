@@ -1,0 +1,72 @@
+/* FOOTER */
+footer {
+    width: 100%;
+    height: auto;
+    padding: 0px 0px;
+    font-size: .85rem;
+    font-weight: 400;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #045474d3;    /* BLUE COLOR */
+}
+
+footer * {
+    /* border: 1px solid darkgrey; */
+    margin: 5px 0;
+}
+
+footer ul {
+    list-style: none;
+}
+
+.social_links {
+    width: 30%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.social_links li {
+    margin: 0px 20px;
+    margin-top: 2px;
+    font-size: 1.5rem;
+}
+
+.social_links a {
+    padding: 0 15px;
+    transition: all 0.15s ease 0s;
+}
+
+.social_links a:hover {
+    color: rgb(240, 240, 240);
+    transform: scale(1.7);
+}
+
+.terms_links {
+    width: 20%;
+    text-align: initial;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.terms_links a:hover {
+    color: #efefef;
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) { /* Responsive (Aplicará esto si el ViewPort es menor a 901px) */
+    .social_links {
+        width: 100%;
+    }
+    
+    .terms_links {
+        width: 50%;
+
+        flex-direction: column;
+        align-items: center;
+    }
+}

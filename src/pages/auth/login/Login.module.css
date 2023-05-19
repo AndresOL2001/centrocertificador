@@ -1,0 +1,79 @@
+/* CONTACT Section */
+.contact {
+    width: 35%;
+    padding: 16px;
+    background-color: aliceblue;
+    border-radius: 16px;
+    margin-top: 300px;
+    margin-bottom: 310px;
+    box-shadow: inset 0px 0px 1px #08065f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact h3 {
+    margin-bottom: 16px;
+}
+
+.contactform {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field {
+    /* display: block; */
+    margin-bottom: 24px;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.1rem;
+    border: 2px solid rgba(0, 0, 0, 0);
+    background-color: rgba(230, 230, 230, 0.47);
+
+    transition: background-color .3s ease;
+}
+
+.field:hover {
+    background-color: rgba(0, 25, 130, .1);
+}
+
+.field:focus {
+    background-color: #ffffff;
+    border: 2px solid rgba(30, 85, 250, 0.4);
+}
+
+.area {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submitbutton {
+    width: 50%;
+    padding: 0.6rem 0rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    color: #efefef;
+    background-color: #116979;
+
+    transition: background-color .2s ease;
+}
+
+.submitbutton:hover {
+    background-color: #084d7a;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .contact {
+        width: 75%;
+        margin-top: 150px;
+        margin-bottom: 155px;
+    }
+}
+/* --- MAIN --- */
