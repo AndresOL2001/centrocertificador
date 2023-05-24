@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./Inicio.module.css";
 import Layout from "../../Layout";
-import DiplomadoCard from "../../components/Cards/Diplomado/DiplomadoCard";
+import DiplomadoCard from "../../components/Cards/Diplomados/DiplomadoCard";
 import { Link } from "react-router-dom";
 const Inicio: React.FC = ({
 }) => {

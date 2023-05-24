@@ -6,6 +6,7 @@ const Login: React.FC = ({
     return (
         <>
             <Layout>
+                
                     <div>
 
                     </div>
@@ -23,7 +24,7 @@ const Login: React.FC = ({
                             <input type="password"
                                 name="Password"
                                 className={style.field}
-                                placeholder="password"
+                                placeholder="Contraseña"
                                 required />
 
                             <button type="submit" id="submit" className={style.submitbutton}>

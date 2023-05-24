@@ -1,9 +1,10 @@
 import React from "react";
 import Layout from "../../Layout";
-import style from "./ofertaEducativa.module.css";
-import DiplomadoCard from "../../components/Cards/Diplomado/DiplomadoCard";
+import style from "./Diplomados.module.css";
+import DiplomadoCard from "../../components/Cards/Diplomados/DiplomadoCard";
+import { Link } from "react-router-dom";
 
-const OfertaEducativa: React.FC = ({
+const Diplomados: React.FC = ({
 }) => {
     return (
         <>
@@ -18,12 +19,13 @@ const OfertaEducativa: React.FC = ({
 
                         <article className={style.diplomados_container}>
 
+                            <Link to="/diplomados/diplomado/1">
                             <DiplomadoCard
                                 bordeado={true}
                                 titulo={"Funcion Policial y Derechos Humanos"}
                                 img={"/files/2023-04/FuncionPolicial/Funcion_Policial_Thumbnail.jpg"}
                                 refart={"diplomados-2023-04-funcionPolicial"} />
-
+                            </Link>
                             <DiplomadoCard
                                 bordeado={true}
                                 titulo={"Medicina Forense"}
@@ -71,4 +73,4 @@ const OfertaEducativa: React.FC = ({
     );
 };
 
-export default OfertaEducativa;
+export default Diplomados;
