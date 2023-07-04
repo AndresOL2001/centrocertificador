@@ -1,36 +1,87 @@
 import axios from "axios"
 
-const obtenerDiplomaPorId = (id:number) => {
+const obtenerToken = () => {
+    return localStorage.getItem("token");
+}
+
+const prod = 'http://localhost:5000';
+/* const prod = 'http://185.211.4.103:5000'
+ */
+const obtenerDiplomaPorId = (id: number) => {
+    let token = obtenerToken();
     const config = {
-        headers: { Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QGhvdG1haWwuY29tIiwiaWF0IjoxNjg0ODgzMDIyLCJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJleHAiOjE2ODQ5MTkwMjJ9.fm28CK8PXQVV1sMbeZQwlMlrdL_q3kP5VIbwu4y08kDrfjGbiXIh58CRiF-NMrE7XcIaouFSNCG8J43xDPfyWA` }
+        headers: { Authorization: `Bearer ${token}` }
     };
-    
-    return axios.get('http://localhost:5000/api/diplomados/'+id,config);
+
+    return axios.get(`${prod}/api/diplomados/` + id, config);
+}
+
+const obtenerDiplomasPorTitulo = (termino: string) => {
+    let token = obtenerToken();
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+
+    return axios.get(`${prod}/api/diplomados/busqueda/` + termino, config);
 }
 
 const obtenerDiplomas = () => {
-    const config = {
-        headers: { Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QGhvdG1haWwuY29tIiwiaWF0IjoxNjg0ODgzMDIyLCJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJleHAiOjE2ODQ5MTkwMjJ9.fm28CK8PXQVV1sMbeZQwlMlrdL_q3kP5VIbwu4y08kDrfjGbiXIh58CRiF-NMrE7XcIaouFSNCG8J43xDPfyWA` }
-    };
-    
-    return axios.get('http://localhost:5000/api/diplomados',config);
+   
+    return axios.get(`${prod}/api/diplomados`);
 }
 
-const guardarDiploma = (diploma:any) => {
+const guardarArchivos = (id: number, imagen: any, brochure: any,thumbnail:any) => {
+    let token = obtenerToken();
+    const formData = new FormData();
+    formData.append(
+        "imagen", imagen
+    );
+    formData.append(
+        "brochure", brochure
+    );
+    formData.append(
+        "thumbnail", thumbnail
+    );
     const config = {
-        headers: { Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QGhvdG1haWwuY29tIiwiaWF0IjoxNjg0ODgzMDIyLCJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJleHAiOjE2ODQ5MTkwMjJ9.fm28CK8PXQVV1sMbeZQwlMlrdL_q3kP5VIbwu4y08kDrfjGbiXIh58CRiF-NMrE7XcIaouFSNCG8J43xDPfyWA` }
+        headers: { Authorization: `Bearer ${token}` }
     };
-    
-    return axios.post('http://localhost:5000/api/diplomados',diploma,config);
+
+    return axios.post(`${prod}/api/diplomados/imagen/` + id, formData, config);
 }
 
-const editarDiploma = (diploma:any,id:number) => {
+const guardarDiploma = (diploma: any) => {
+    let token = obtenerToken();
     const config = {
-        headers: { Authorization: `Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0QGhvdG1haWwuY29tIiwiaWF0IjoxNjg0ODgzMDIyLCJyb2xlIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJleHAiOjE2ODQ5MTkwMjJ9.fm28CK8PXQVV1sMbeZQwlMlrdL_q3kP5VIbwu4y08kDrfjGbiXIh58CRiF-NMrE7XcIaouFSNCG8J43xDPfyWA` }
+        headers: { Authorization: `Bearer ${token}` }
     };
-    
-    return axios.put('http://localhost:5000/api/diplomados/'+id,diploma,config);
+
+    return axios.post(`${prod}/api/diplomados`, diploma, config);
+}
+
+const editarDiploma = (diploma: any, id: number) => {
+    console.log(diploma);
+    let token = obtenerToken();
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+
+    return axios.put(`${prod}/api/diplomados/` + id, diploma, config);
+}
+
+const eliminarDiploma = (id: number) => {
+    let token = obtenerToken();
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+
+    return axios.delete(`${prod}/api/diplomados/` + id, config);
 }
 
 
-export default {obtenerDiplomaPorId,guardarDiploma,obtenerDiplomas,editarDiploma};
+const iniciarSesion = (loginUser: any) => {
+    return axios.post(`${prod}/api/auth/login`, loginUser);
+}
+
+
+
+export default { obtenerDiplomaPorId, guardarDiploma, obtenerDiplomas, editarDiploma, iniciarSesion, guardarArchivos, eliminarDiploma, obtenerDiplomasPorTitulo };

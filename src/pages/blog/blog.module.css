@@ -1,4 +1,6 @@
-/* MAIN */
+/* main * {
+    border: 2px solid darkgrey;
+} */
 main {
     flex: 1;    /* Ocupa el resto de la pagina que deja el Header y Footer */
 
@@ -8,10 +10,13 @@ main {
     align-items: center;
 }
 
-/* main * {
-    border: 2px solid darkgrey;
-} */
+main > section {    /* Only direct children */
+    margin-top: 40px;
+}
 
+main > section:first-child {    /* Only the first child of its parent */
+    margin-top: 75px;
+}
 
 main h1, main h2, main h3 {
     color: rgb(0, 30, 110);
@@ -21,9 +26,8 @@ main p {
     line-height: 25px;
 }
 
-    /* CONSTRUCCION Section */
-.construccion {
-    margin-bottom: 0px;
+    /* WELCOME Section */
+.welcome {
     position: relative;
     width: 100%;
     display: flex;
@@ -31,11 +35,15 @@ main p {
     align-items: center;
 }
 
-.construccion img {
+.img_blog{
+    width: 20%;
+}
+
+.welcome img {
     width: 100%;
 }
 
-.construccion > i {
+.welcome > i {
     position: absolute;
     top: 0;
     left: 0;
@@ -43,23 +51,269 @@ main p {
     height: 100%;
     background: linear-gradient(135deg, rgba(16, 146, 163, 0.7), rgba(1, 28, 33, 0.6));
 
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.construccion h2 {
-    font-style: normal;
-    font-size: 32px;
-    font-weight: 400;
+.welcome h1, .welcome h2 {
+    position: absolute;
+    left: 3%;
+    padding: 10px;
     color: azure;
+    background-color: rgba(30, 30, 30, 0.4);
+    box-shadow: 1px 5px 40px #1f1f1f;
+    border-radius: 10%;
+}
 
-    display: flex;
-    align-items: center;
+.welcome h1 {
+    top: 30%;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.welcome h2 {
+    top: 45%;
+    font-size: 28px;
+    font-weight: 400;
+    font-style: italic;
 }
 
 @media (max-width: 900px) {
     main > section:first-child {
         margin-top: 0;
+    }
+
+    .welcome h1 {
+        font-size: 11px;
+    }
+
+    .welcome h2 {
+        font-size: 11px;
+    }
+    .img_blog{
+        width: 100%;
+    }
+    
+}
+
+    /* DIPLOMADOS Section */
+.diplomados {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+    
+.recientes {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    border-bottom: 3px solid rgb(5, 5, 150);
+    
+}
+    
+.diplomados_container {
+    margin-top: 15px;
+    width: 100%; /* 90% para checar bordes*/
+    
+    display: grid;
+    grid-template-columns: repeat(2, 40%);
+    justify-content: space-around;
+    grid-gap: 30px 0px; /* Filas - Columnas */
+}
+    
+    
+.flyer_img {
+    width: 100%;
+    border-radius: 10px;
+}
+    
+.diplomado_card h3 {
+    font-size: 18px;
+}
+
+.diplomado_card p {
+    margin-top: 8px;
+}
+    
+.diplomado_card i {
+    position: absolute;
+    top: 0;
+    
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    transition: box-shadow .15s ease;
+}
+    
+.diplomado_card i:hover {
+    box-shadow: inset 0px 0px 130px 10px rgba(0, 25, 130, .20);
+}
+.margen_inferior{
+    margin-bottom: 10px;
+}
+
+.btnmostrar {
+    margin-top: 12px;
+    margin-bottom: 18px;
+    padding: 8px;
+    border-radius: 12px;
+    color: #efefef;
+    outline: none;
+    border: none;
+    background-color: #116979;
+    transition: background-color .2s ease;
+}
+
+.btnmostrar:hover {
+    cursor: pointer;
+    background-color: #084d7a;
+}
+
+@media (max-width: 900px) {
+    .diplomados {
+        width: 55%;
+    }
+
+    .diplomados_container {
+        grid-template-columns: 1fr;
+        /* grid-gap: 30px 0px; */
+    }
+}
+
+    /* VALIDEZ Section */
+.validez {
+    width: 50%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.validez_container {
+    width: 100%;
+    height: auto; /* Se adapta al contenido que se agregue */
+    margin-top: 16px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+}
+
+.validez_card {
+    width: 100%;
+    height: auto;
+    padding: 12px 15px;
+    background-color: aliceblue;
+    border-radius: 5%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.validez_card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5%;
+    transition: transform 0.2s linear;
+    box-shadow: 2px 4px 2px rgba(0, 0, 0, 0.4);
+}
+
+.validez_card p {
+    margin-top: 16px;
+}
+
+/* .validez_card p a {
+    font-style: italic;
+}
+
+.validez_card p a:hover { text-decoration: underline; } */
+
+@media (max-width: 900px) {
+    .validez {
+        width: 75%;
+    }
+
+    .validez_container {
+        grid-template-columns: 1fr;
+    }
+}
+
+    /* CONTACT Section */
+.contact {
+    width: 35%;
+    padding: 16px;
+    background-color: aliceblue;
+    border-radius: 16px;
+    box-shadow: inset 0px 0px 1px #08065f;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact h3 {
+    margin-bottom: 16px;
+}
+
+.contactform {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field {
+    /* display: block; */
+    margin-bottom: 24px;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.1rem;
+    border: 2px solid rgba(0, 0, 0, 0);
+    background-color: rgba(230, 230, 230, 0.47);
+
+    transition: background-color .3s ease;
+}
+
+.field:hover {
+    background-color: rgba(0, 25, 130, .1);
+}
+
+.field:focus {
+    background-color: #ffffff;
+    border: 2px solid rgba(30, 85, 250, 0.4);
+}
+
+.area {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.submitbutton {
+    width: 50%;
+    padding: 0.6rem 0rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    color: #efefef;
+    background-color: #116979;
+
+    transition: background-color .2s ease;
+}
+
+.submitbutton:hover {
+    background-color: #084d7a;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .contact {
+        width: 75%;
     }
 }
 /* --- MAIN --- */

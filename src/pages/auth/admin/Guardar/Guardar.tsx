@@ -2,6 +2,7 @@ import Layout from "../../../../Layout"
 import React, { useState } from "react";
 import style from "../Editar/Editar.module.css";
 import DiplomadoService from "../../../../services/DiplomadoService";
+import Swal from "sweetalert2";
 
 const diplomado = {
     imagen: '',
@@ -18,6 +19,7 @@ const diplomado = {
     mensualidades: '',
     whatsapp: '',
     brochure:'',
+    thumbnail:'',
     unidad: [] as any,
     highlight: [] as any
 }
@@ -27,6 +29,9 @@ const Guardar: React.FC = ({
     const [countHighlight, setCountHighlight] = useState(1) // Name it however you wish
     const [countUnidad, setCountUnidad] = useState(1) // Name it however you wish
     const [stateDiplomado, setStateDiplomado] = useState(diplomado) // Name it however you wish
+    const [stateImagen, setStateImagen] = useState() // Name it however you wish
+    const [stateBrochure, setStateBrochure] = useState() // Name it however you wish
+    const [stateThumbnail, setStateThumbnail] = useState() // Name it however you wish
 
     function agregarUnidad(): void {
         setCountUnidad(countUnidad + 1);
@@ -71,8 +76,32 @@ const Guardar: React.FC = ({
     }
     const handleFileUpload = (event: any, fileType: string) => {
         const url = URL.createObjectURL(event.target.files[0]);
-        const updatedState = fileType === "brochure" ? { ...stateDiplomado, brochure: url } : { ...stateDiplomado, imagen: url };
-        setStateDiplomado(updatedState);
+        if(fileType === "brochure"){
+           const updatedState = { ...stateDiplomado, brochure: url }
+            setStateDiplomado(updatedState);
+
+        }
+
+        if(fileType === "imagen"){
+          const  updatedState = { ...stateDiplomado, imagen: url };
+          setStateDiplomado(updatedState);
+        }
+
+        if(fileType === "thumbnail"){
+            const  updatedState = { ...stateDiplomado, thumbnail: url };
+            setStateDiplomado(updatedState);
+          }
+
+
+        if(fileType === "brochure"){
+        setStateBrochure(event.target.files[0]);
+        }
+        if(fileType === "imagen"){
+            setStateImagen(event.target.files[0]);
+        }
+        if(fileType === "thumbnail"){
+            setStateThumbnail(event.target.files[0]);
+        }
       };
 
     function agregarTemaUnidad(unidadABuscar: any): void {
@@ -152,9 +181,12 @@ const Guardar: React.FC = ({
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
+        Swal.showLoading();
         console.log(stateDiplomado)
         DiplomadoService.guardarDiploma(stateDiplomado).then((response) => {
-            console.log(response)
+            DiplomadoService.guardarArchivos(response.data.id,stateImagen,stateBrochure,stateThumbnail).then(() => {
+                Swal.fire('Listo!','Diploma editado correctamente','success');
+            })
         }).catch((err) => {
             console.log(err)
         })
@@ -192,7 +224,7 @@ const Guardar: React.FC = ({
 
                         <article className={style.infoPagos_container}>
                             <div className={style.infoPagos_card}>
-                                <p><span className={style.top_span}>FECHA</span> <br /> <input className={style.field} name="fecha" onChange={handleInputChange} defaultValue={stateDiplomado.fecha} /></p>
+                                <p><span className={style.top_span}>FECHA</span> <br /> <input className={style.field} name="fecha" type="date" onChange={handleInputChange} defaultValue={stateDiplomado.fecha} /></p>
                                 <p><span>DURACION</span> <br /><input className={style.field} name="duracion" onChange={handleInputChange} defaultValue={stateDiplomado.duracion} /></p>
                                 <p><span>CLASES</span> <br /> <input className={style.field} name="horario" onChange={handleInputChange} defaultValue={stateDiplomado.horario} /><br /> (Horario Centro de Mexico)</p>
                             </div>
@@ -205,7 +237,7 @@ const Guardar: React.FC = ({
                         </article>
 
                         <article className={style.buttons_container}>
-                            <h1>Link Whatsapp Asesor</h1>
+                            <h1>Link Whatsapp </h1>
                             <input className={style.field} name="whatsapp" onChange={handleInputChange} defaultValue={stateDiplomado.whatsapp} />
                             <h1>Brochure PDF</h1>
                             <input name="brochure" className={style.field} onChange={(e) => handleFileUpload(e,"brochure")} multiple accept="image/*" type="file" />
@@ -215,6 +247,11 @@ const Guardar: React.FC = ({
 
                             <h1>Imagen Flyer</h1>
                             <input name="imagen" className={style.field} onChange={(e) => handleFileUpload(e,"imagen")} multiple accept="image/*" type="file" />
+                        </article>
+                        <article className={style.buttons_container}>
+
+                            <h1>Imagen Thumbnail</h1>
+                            <input name="thumbnail" className={style.field} onChange={(e) => handleFileUpload(e,"thumbnail")} multiple accept="image/*" type="file" />
                         </article>
                     </div>
                 </section>

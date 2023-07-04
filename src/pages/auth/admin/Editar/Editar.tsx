@@ -3,22 +3,24 @@ import React, { useEffect, useState } from "react";
 import style from "./Editar.module.css";
 import DiplomadoService from "../../../../services/DiplomadoService";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const diplomado = {
-    imagen: '/files/2023-04/FuncionPolicial/Funcion_Policial.jpg',
-    brochure:'',
-    titulo: 'Función Policial y Derechos Humanos',
-    proposito: `El propósito principal de la función policial es la seguridad pública, en ciertas ocasiones la policía al realizar su funcion policial a través de la prevención e investigación, transgrede el principio de legalidad atentando en contra de los derechos humanos de las personas, sin embargo existen marcos normativos que regulan estas funciones, mismas que se regirán por los principios de legalidad, objetividad, eficiencia, profesionalismo, hornadez y respeto a los derechos humanos.`,
-    objetivo: 'Constrastar las diversas legislaciones que existen cuya finalidad se centra en el respeto de los derechos humanos. Establecer los procedimientos que debe seguir el policía en su actuación con apego a los principios de la legalidad, objetividad, ética, eficiencia y respeto a los derechos humanos. Orientar y facilitar los procesos de capacitación y actuar del policía.',
-    dirigido: 'Personal policial, municipal, estatal, policía de investigación, Guardia Nacional, policía militar, estudiantes y profesionales en Criminología, abogados, Peritos, custodios, Personal directivo y administrativo penitenciario.',
-    fecha: '09 de Abril del 2023',
-    duracion: '6 meses',
-    horario: 'Domingo de 10:00 a 14:00 Hrs.',
-    pago: 6850,
-    asesor: 'Lucero',
-    inscripcion: 349,
-    mensualidades: '6 Meses - $1,149.00 MXN',
-    whatsapp: 'https://wa.me/527341890671?text=¡Buen%20día!%20estoy%20interesado/a%20en%20el%20diplomado%20de%20Función%20Policial',
+    imagen: '',
+    brochure: '',
+    titulo: '',
+    proposito: ``,
+    objetivo: '',
+    dirigido: '',
+    fecha: '',
+    duracion: '',
+    horario: '',
+    pago: 0,
+    asesor: '',
+    inscripcion: 0,
+    mensualidades: '',
+    whatsapp: '',
+    thumbnail: '',
     unidad: [] as any,
     highlight: [] as any
 }
@@ -30,6 +32,9 @@ const Editar: React.FC = ({
     const [countHighlight, setCountHighlight] = useState(1) // Name it however you wish
     const [countUnidad, setCountUnidad] = useState(1) // Name it however you wish
     const [stateDiplomado, setStateDiplomado] = useState(diplomado) // Name it however you wish
+    const [stateImagen, setStateImagen] = useState() // Name it however you wish
+    const [stateBrochure, setStateBrochure] = useState() // Name it however you wish
+    const [stateThumbnail, setStateThumbnail] = useState() // Name it however you wish
 
     useEffect(() => {
         DiplomadoService.obtenerDiplomaPorId(Number(params.id)).then((response) => {
@@ -43,9 +48,9 @@ const Editar: React.FC = ({
     function agregarUnidad(): void {
         setCountUnidad(countUnidad + 1);
         let valorUnidad = {
-            id:countUnidad,
+            id: countUnidad,
             nombre: "unidad ",
-            nuevo:true,
+            nuevo: true,
             tema: []
         }
         const nextPerson = { ...stateDiplomado, unidad: stateDiplomado.unidad.concat(valorUnidad) };
@@ -57,8 +62,8 @@ const Editar: React.FC = ({
     function agregarHighlight(): void {
         setCountHighlight(countHighlight + 1);
         let valorHighlight = {
-            id:countHighlight,
-            nuevo:true,
+            id: countHighlight,
+            nuevo: true,
             nombre: "test",
         }
         console.log(stateDiplomado.highlight.concat(valorHighlight))
@@ -68,11 +73,11 @@ const Editar: React.FC = ({
         console.log(stateDiplomado);
     }
 
-    const handleInputHighlight = (higlightNew:any ,event:any) => {
+    const handleInputHighlight = (higlightNew: any, event: any) => {
         const nextDiplomado = {
             ...stateDiplomado, highlight: stateDiplomado.highlight.map((c: any) => {
                 if (c.id === higlightNew.id) {
-                        c.nombre = event.target.value;
+                    c.nombre = event.target.value;
                     return c;
                 } else {
                     // The rest haven't changed
@@ -85,9 +90,33 @@ const Editar: React.FC = ({
     }
     const handleFileUpload = (event: any, fileType: string) => {
         const url = URL.createObjectURL(event.target.files[0]);
-        const updatedState = fileType === "brochure" ? { ...stateDiplomado, brochure: url } : { ...stateDiplomado, imagen: url };
-        setStateDiplomado(updatedState);
-      };
+        if (fileType === "brochure") {
+            const updatedState = { ...stateDiplomado, brochure: url }
+            setStateDiplomado(updatedState);
+
+        }
+
+        if (fileType === "imagen") {
+            const updatedState = { ...stateDiplomado, imagen: url };
+            setStateDiplomado(updatedState);
+        }
+
+        if (fileType === "thumbnail") {
+            const updatedState = { ...stateDiplomado, thumbnail: url };
+            setStateDiplomado(updatedState);
+        }
+
+
+        if (fileType === "brochure") {
+            setStateBrochure(event.target.files[0]);
+        }
+        if (fileType === "imagen") {
+            setStateImagen(event.target.files[0]);
+        }
+        if (fileType === "thumbnail") {
+            setStateThumbnail(event.target.files[0]);
+        }
+    };
 
     function agregarTemaUnidad(unidad: any): void {
         console.log(unidad)
@@ -97,7 +126,7 @@ const Editar: React.FC = ({
                     // Increment the clicked counter
                     let tema = {
                         id: c.tema.length + 1,
-                        nuevo:true,
+                        nuevo: true,
                         nombre: ""
                     }
                     c.tema.push(tema)
@@ -112,7 +141,7 @@ const Editar: React.FC = ({
         setStateDiplomado(nextPerson);
     }
 
-    
+
 
     const hangleInputTema = (unidad: any, tema: any, event: any) => {
 
@@ -164,17 +193,45 @@ const Editar: React.FC = ({
         }));
     };
 
- 
+
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
+        Swal.showLoading();
         console.log(stateDiplomado)
-        DiplomadoService.editarDiploma(stateDiplomado,Number(params.id)).then((response) => {
-            console.log(response)
+        DiplomadoService.editarDiploma(stateDiplomado, Number(params.id)).then(() => {
+            DiplomadoService.guardarArchivos(Number(params.id), stateImagen, stateBrochure, stateThumbnail).then(() => {
+              Swal.fire('Listo!','Diploma editado correctamente','success');
+            })
         }).catch((err) => {
             console.log(err)
         })
     };
+
+    function eliminarItemFromDiplomado(section: string, itemToRemove: any): void {
+        setStateDiplomado((prevDiplomado:any) => ({
+            ...prevDiplomado,
+            [section]: prevDiplomado[section].filter((item: any) => item !== itemToRemove)
+        }));
+    }
+    function eliminarTemaFromUnidadDiplomado(unidad:any,itemToRemove: any,):void{
+        console.log(unidad);
+        const nextDiplomado = {
+            ...stateDiplomado, unidad: stateDiplomado.unidad.map((c: any) => {
+                if (c === unidad) {
+
+                    c.tema = c.tema.filter((x:any) => x !== itemToRemove)
+
+                    return c;
+                } else {
+                    // The rest haven't changed
+                    return c;
+                }
+            })
+        };
+
+        setStateDiplomado(nextDiplomado);
+    }
 
     return (
         <Layout>
@@ -208,29 +265,34 @@ const Editar: React.FC = ({
 
                         <article className={style.infoPagos_container}>
                             <div className={style.infoPagos_card}>
-                                <p><span className={style.top_span}>FECHA</span> <br /> <input className={style.field} name="fecha" onChange={handleInputChange} defaultValue={stateDiplomado.fecha} /></p>
+                                <p><span className={style.top_span}>FECHA</span> <br /> <input className={style.field} type="date" name="fecha" onChange={handleInputChange} defaultValue={stateDiplomado.fecha} /></p>
                                 <p><span>DURACION</span> <br /><input className={style.field} name="duracion" onChange={handleInputChange} defaultValue={stateDiplomado.duracion} /></p>
                                 <p><span>CLASES</span> <br /> <input className={style.field} name="horario" onChange={handleInputChange} defaultValue={stateDiplomado.horario} /><br /> (Horario Centro de Mexico)</p>
                             </div>
                             <div className={style.infoPagos_card}>
-                                <p><span className={style.top_span}>PAGO UNICO</span> <br /> <input name="pago"type="number" min="0" onChange={handleInputChange} className={style.field} defaultValue={stateDiplomado.pago} /></p>
+                                <p><span className={style.top_span}>PAGO UNICO</span> <br /> <input name="pago" type="number" min="0" onChange={handleInputChange} className={style.field} value={stateDiplomado.pago} /></p>
                                 <p><span>MENSUALIDADES</span> <br /><input className={style.field} name="mensualidades" onChange={handleInputChange} defaultValue={stateDiplomado.mensualidades} /> </p>
-                                <p><span>INSCRIPCION</span> <br /> <input className={style.field}  type="number" min="0" name="inscripcion" onChange={handleInputChange} defaultValue={stateDiplomado.inscripcion} /></p>
+                                <p><span>INSCRIPCION</span> <br /> <input className={style.field} type="number" min="0" name="inscripcion" onChange={handleInputChange} value={stateDiplomado.inscripcion} /></p>
                                 <p><span>Asesor(a):</span><input className={style.field} name="asesor" onChange={handleInputChange} defaultValue={stateDiplomado.asesor} /> </p>
                             </div>
                         </article>
 
                         <article className={style.buttons_container}>
-                            <h1>Link Whatsapp Asesor</h1>
+                            <h1>Link Whatsapp </h1>
                             <input className={style.field} name="whatsapp" onChange={handleInputChange} defaultValue={stateDiplomado.whatsapp} />
                             <h1>Brochure PDF</h1>
-                            <input name="brochure" className={style.field} onChange={(e) => handleFileUpload(e,"brochure")} multiple accept="image/*" type="file" />
+                            <input name="brochure" className={style.field} onChange={(e) => handleFileUpload(e, "brochure")} multiple accept="image/*" type="file" />
                         </article>
 
                         <article className={style.buttons_container}>
 
                             <h1>Imagen Flyer</h1>
-                            <input name="imagen" className={style.field} onChange={(e) => handleFileUpload(e,"imagen")} multiple accept="image/*" type="file" />
+                            <input name="imagen" className={style.field} onChange={(e) => handleFileUpload(e, "imagen")} multiple accept="image/*" type="file" />
+                        </article>
+                        <article className={style.buttons_container}>
+
+                            <h1>Imagen Thumbnail</h1>
+                            <input name="thumbnail" className={style.field} onChange={(e) => handleFileUpload(e,"thumbnail")} multiple accept="image/*" type="file" />
                         </article>
                     </div>
                 </section>
@@ -241,7 +303,10 @@ const Editar: React.FC = ({
                     <div className={style.highlights_container}>
                         {stateDiplomado.highlight && stateDiplomado.highlight.map((x: any, i: any) => (
                             <>
-                            <input className={style.field} key={i + 'highlight'} defaultValue={x.nombre} onChange={(event) => handleInputHighlight(x, event)} /> 
+                            <article className={style.buttons_container}>
+                                <input className={style.field} key={i + 'highlight'} value={x.nombre} onChange={(event) => handleInputHighlight(x, event)} />
+                                <i  key={"iconTitulo" + i} onClick={() => eliminarItemFromDiplomado('highlight',x)} className={`fas fa-times ${style.iconclose}`}></i>
+                                </article>
                             </>
                         ))}
 
@@ -255,11 +320,20 @@ const Editar: React.FC = ({
                     <div className={style.highlights_container}>
                         {stateDiplomado.unidad && stateDiplomado.unidad.map((x: any, i: any) => (
                             <>
-                                <input  key={i} className={style.field} defaultValue={x.nombre} onChange={(event) => hangleInputUnidad(x, event)} />
+                             <article className={style.buttons_container}>
+                                <input key={i} className={style.field} value={x.nombre} onChange={(event) => hangleInputUnidad(x, event)} />
+                                <i  key={"iconUnidad" + i} onClick={() => eliminarItemFromDiplomado('unidad',x)} className={`fas fa-times ${style.iconclose}`}></i>
+                                </article>
+
                                 <ul>
                                     <h4>Temas:</h4>
                                     {x.tema && x.tema.map((y: any, j: any) => (
-                                        <li key={j + "temas"}> <input className={style.field} key={j + "temas"} defaultValue={y.nombre} onChange={(event) => hangleInputTema(x, y, event)} /> </li>
+                                        <>
+                                        <article className={style.buttons_container}>
+                                        <li key={j + "temas"}> <input className={style.field} key={j + "temas"} value={y.nombre} onChange={(event) => hangleInputTema(x, y, event)} /> </li>
+                                        <i  key={"iconTema" + i} onClick={() => eliminarTemaFromUnidadDiplomado(x,y)} className={`fas fa-times ${style.iconclose}`}></i>
+                                        </article>
+                                        </>
 
                                     ))}
                                 </ul>

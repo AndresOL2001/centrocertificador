@@ -3,19 +3,11 @@
 } */
 main {
     flex: 1;    /* Ocupa el resto de la pagina que deja el Header y Footer */
-
+    padding-bottom:14px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-}
-
-main > section {    /* Only direct children */
-    margin-top: 40px;
-}
-
-main > section:first-child {    /* Only the first child of its parent */
-    margin-top: 75px;
 }
 
 main h1, main h2, main h3 {

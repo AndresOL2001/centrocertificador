@@ -1,11 +1,64 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../Layout";
 import style from "./Diplomados.module.css";
 import DiplomadoCard from "../../components/Cards/Diplomados/DiplomadoCard";
 import { Link } from "react-router-dom";
-
+import DiplomadoService from "../../services/DiplomadoService";
+let meses:any = {
+    "01":"Enero",
+    "02":"Febrero",
+    "03":"Marzo",
+    "04":"Abril",
+    "05":"Mayo",
+    "06":"Junio",
+    "07":"Julio",
+    "08":"Agosto",
+    "09":"Septiembre",
+    "10":"Octubre",
+    "11":"Noviembre",
+    "12":"Diciembre"
+}
 const Diplomados: React.FC = ({
 }) => {
+ 
+    const [stateDiplomado, setStateDiplomado] = useState([]) // Name it however you wish
+    // Group the diplomados by month
+    const diplomadosByMonth: Record<string, any[]> = {};
+    stateDiplomado.forEach((diplomado: any) => {
+    const month = diplomado.fecha.split("-")[1];
+    if (!diplomadosByMonth[month]) {
+        diplomadosByMonth[month] = [];
+    }
+    diplomadosByMonth[month].push(diplomado);
+    });
+    
+    useEffect(() => {
+        obtenerDiplomas(setStateDiplomado);
+    }, []);
+    
+    function obtenerDiplomas(setStateDiplomado: React.Dispatch<React.SetStateAction<never[]>>) {
+        DiplomadoService.obtenerDiplomas().then((response) => {
+            //console.log(response.data);
+            setStateDiplomado(response.data);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+    
+    function handleKeyUp(e:any): void {
+        if(e.target.value.length === 0){
+            obtenerDiplomas(setStateDiplomado);
+            return;
+        }
+
+        DiplomadoService.obtenerDiplomasPorTitulo(e.target.value).then((resp) => {
+            setStateDiplomado(resp.data);
+
+        },err => {
+            console.log(err);
+        })
+    }
+
     return (
         <>
             <Layout>
@@ -13,60 +66,32 @@ const Diplomados: React.FC = ({
                     <section>
                         <h1 className={style.title}>DIPLOMADOS</h1>
                     </section>
-
-                    <section className={style.diplomados}>
-                        <h2 className={style.month_year}>ABRIL 2023</h2>
-
+                    <div>
+                        <input type="text"
+                         onKeyUp={(e) =>handleKeyUp(e)}
+                            name="nombreUsuario"
+                            className={style.field}
+                            placeholder="Buscar Diplomados "
+                            required />
+                    </div>
+                        
+                        {Object.entries(diplomadosByMonth).map(([month, diplomados]) => (
+                    <section className={style.diplomados} key={month}>
+                        <h2 className={style.month_year}>{meses[month]} {diplomados[0].fecha.split("-")[0]}</h2>
                         <article className={style.diplomados_container}>
-
-                            <Link to="/diplomados/diplomado/1">
+                        {diplomados.map((diplomado: any, index: number) => (
+                            <Link to={`/diplomados/diplomado/${diplomado.id}`} key={index}>
                             <DiplomadoCard
                                 bordeado={true}
-                                titulo={"Funcion Policial y Derechos Humanos"}
-                                img={"/files/2023-04/FuncionPolicial/Funcion_Policial_Thumbnail.jpg"}
-                                refart={"diplomados-2023-04-funcionPolicial"} />
+                                titulo={`${diplomado.titulo}`}
+                                img={`${diplomado.thumbnail}`}
+                            />
                             </Link>
-                            <DiplomadoCard
-                                bordeado={true}
-                                titulo={"Medicina Forense"}
-                                img={"/files/2023-04/MedicinaForense/Medicina_Forense_Thumbnail.jpg"}
-                                refart={"diplomados-2023-04-funcionPolicial"} />
-
-                            <DiplomadoCard titulo={"Odontologia Forense"}
-                                bordeado={true}
-                                img={"/files/2023-04/OdontologiaForense/Odontologia_Forense_Thumbnail.jpg"}
-                                refart={"diplomados-2023-04-funcionPolicial"} />
-
-                            <DiplomadoCard  bordeado={true}
-                            titulo={"Seguridad, Control y Prevención de la Violencia Escolar"}
-                                img={"/files/2023-04/SeguridadEscolar/Seguridad_Escolar_Thumbnail.jpg"}
-                                refart={"diplomados-2023-04-funcionPolicial"} />
-
-                            <DiplomadoCard bordeado={true} titulo={"Seguridad Patrimonial y Control de Riesgos"}
-                                img={"/files/2023-04/SeguridadPatrimonial/Seguridad_Patrimonial_Thumbnail.jpg"}
-                                refart={"diplomados-2023-04-funcionPolicial"} />
-
+                        ))}
                         </article>
                     </section>
-
-                    <section className={style.diplomados}>
-                        <h2 className={style.month_year}>MAYO 2023</h2>
-
-                        <article className={style.diplomados_container}>
-                            <DiplomadoCard bordeado={true} titulo={"Grafoscopía y Documentos Cuestionados"}
-                                img={"/files/2023-05/Grafoscopia/Grafoscopia.jpg"}
-                                refart={"diplomados-2023-04-funcionPolicial"} />
-
-                            <DiplomadoCard bordeado={true} titulo={"Justicia Penal para Adolescentes"}
-                                img={"/files/2023-05/JusticiaPenalAdolescentes/Justicia_Penal_Adolescentes.jpg"}
-                                refart={"diplomados-2023-04-funcionPolicial"} />
-
-                            <DiplomadoCard bordeado={true} titulo={"Seguridad Nacional y Gestión de Recursos"}
-                                img={"/files/2023-05/SeguridadNacional/Seguridad_Nacional.jpg"}
-                                refart={"diplomados-2023-04-funcionPolicial"} />
-
-                        </article>
-                    </section>
+                    ))}
+                           
                 </main>
             </Layout>
         </>
@@ -74,3 +99,4 @@ const Diplomados: React.FC = ({
 };
 
 export default Diplomados;
+

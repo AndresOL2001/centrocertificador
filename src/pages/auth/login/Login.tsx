@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./Login.module.css";
 import Layout from "../../../Layout";
+import DiplomadoService from "../../../services/DiplomadoService";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 const Login: React.FC = ({
 }) => {
+
+    const loginUser = {
+        nombreUsuario:'',
+        contraseña:''
+    }
+    const navigate = useNavigate();
+
+
+    const [stateUser, setStateUser] = useState(loginUser) // Name it however you wish
+    const handleInputChange = (event: any) => {
+        const { name, value } = event.target;
+        setStateUser((prevProps) => ({
+            ...prevProps,
+            [name]: value
+        }));
+    };
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        console.log(stateUser)
+        DiplomadoService.iniciarSesion(stateUser).then((response) => {
+            console.log(response)
+            Swal.fire("Correcto!","Inciando Sesión","success");
+            localStorage.setItem("token",response.data.token);
+            navigate("/admin")
+        }).catch((err) => {
+            Swal.fire("Error!","Usuario y/o contraseña incorrecta","error");
+            console.log(err)
+        })
+    };
+
     return (
         <>
             <Layout>
@@ -13,16 +46,18 @@ const Login: React.FC = ({
                     <section className={style.contact}>
                         <h3>Iniciar Sesión</h3>
 
-                        <form id="contact-form" action="https://formsubmit.co/4ad8a40c3ff9538c9c8fee68534e3d9d" className={style.contactform} method="POST">
+                        <form id="contact-form"  className={style.contactform} onSubmit={handleSubmit}>
 
                             <input type="email"
-                                name="Email"
+                                name="nombreUsuario"
                                 className={style.field}
+                                onChange={handleInputChange}
                                 placeholder="Correo Electrónico"
                                 required />
 
                             <input type="password"
-                                name="Password"
+                                name="contraseña"
+                                onChange={handleInputChange}
                                 className={style.field}
                                 placeholder="Contraseña"
                                 required />

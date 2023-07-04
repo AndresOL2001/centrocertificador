@@ -1,0 +1,336 @@
+
+.form{
+    display:contents;
+    position: relative;
+}
+/* main * {
+    border: 1px solid darkgrey;
+} */
+
+main h1, main h2, main h3 {
+    color: rgb(0, 30, 110);
+}
+
+main > section {    /* Only direct children */
+    margin-top: 40px;
+}
+ /* FLYER Section */
+ .flyer_section {
+    width: 50%;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconclose{
+    margin-left: 10px;
+    cursor:pointer;
+}
+.flyer_img {
+    width: 40%;
+    margin-top: 75px;
+    box-shadow: rgba(0, 0, 0, 0.74) 0px 2px 4px, rgba(0, 0, 0, 0.73) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.flyer_container {
+    width: 60%;
+    margin-top: 75px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.presentacion {
+    line-height: 25px;
+}
+
+.field {
+    /* display: block; */
+    margin-bottom: 24px;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.1rem;
+    border: 2px solid rgba(0, 0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    resize: none;
+    transition: background-color .3s ease;
+}
+
+.field:hover {
+    background-color: rgba(0, 25, 130, .1);
+}
+
+.field:focus {
+    background-color: #ffffff;
+    border: 2px solid rgba(30, 85, 250, 0.4);
+}
+.submitbutton {
+    width: 30%;
+    padding: 0.6rem 0rem;
+    font-size: 1rem;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    color: #efefef;
+    background-color: #116979;
+  
+    transition: background-color .2s ease;
+  }
+  
+  .submitbutton:hover {
+    background-color: #084d7a;
+    cursor: pointer;
+  }
+
+  .opcionesbutton {
+    width: 100%;
+    padding: 0.6rem 0rem;
+    font-size: 1rem;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    color: #efefef;
+    background-color: #116979;
+  
+    transition: background-color .2s ease;
+  }
+  
+  .opcionesbutton:hover {
+    background-color: #084d7a;
+    cursor: pointer;
+  }
+.area {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.diplomado {
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+.infoPagos_container {
+    width: 100%;
+    font-size: 1.2rem;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.infoPagos_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.infoPagos_card span {
+    display: inline-block;
+    margin-top: 20px;
+
+    color: rgb(0, 50, 150);
+    font-weight: bold;
+}
+
+.infoPagos_card .top_span {
+    margin-top: 0;
+}*
+
+.buttons_container {
+    width: 100%;
+    font-weight: bold;
+    margin-right: 10px;
+    display: flex; 
+    justify-content: space-between;
+}
+
+.flyer_buttons {
+    height: 50px;
+    padding: 7px;
+    color: #ffffff;
+    background: linear-gradient(110deg, rgba(10, 81, 148, 0.7), rgba(10, 131, 91, 0.7));
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: transform .2s ease, box-shadow .3s ease;
+
+    display: flex;
+    align-items: center;
+}
+
+.flyer_buttons:hover {
+    cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.contact_img {
+    width: 40px;
+    height: auto;
+    max-width: 100%;
+}
+
+.margin_icon{
+    margin-bottom: 16px;
+}
+
+.purchase {
+    border: none;
+    font-weight: bold;
+
+    visibility: hidden;
+}
+
+.fa-download, .fa-money-bill {
+    font-size: 1.7rem;
+}
+    
+    .highlights_container {
+        margin-top: 25px;
+    
+        place-items: center;
+        grid-gap: 30px 50px; /* Filas - Columnas */
+    }
+    
+    .highlight {
+        padding: 20px 20px;
+        border-radius: 15px;
+        background-color: #e9e9e9;
+    }
+
+@media (max-width: 900px) {
+    main {
+        margin-top: 0;
+    }
+
+    .flyer_section {
+        width: 95%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flyer_img, .flyer_container {
+        width: 100%;
+        padding-left: 0px;
+    }
+
+    .presentacion {
+        margin-top: 20px;
+    }
+
+    .infoPagos_container {
+        flex-direction: column;
+    }
+
+    .infoPagos_card .top_span {
+        margin-top: 20px;
+    }
+
+    .buttons_container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flyer_buttons {
+        margin-top: 30px;
+    }
+    
+    .purchase {
+        display: none;
+    }
+}
+
+
+
+@media (max-width: 900px) {
+    .highlights_section {
+        width: 95%;
+    }
+
+    .highlights_container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+    /* TEMARIO Section */
+.temario_section {
+    width: 75%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+    /* Si la section tiene algun elemento es un estado checked */
+.temario_section:has( :checked ) {   /* Debe ser Padre para usar la Var() en un hijo */
+    --rows: 1fr;
+    --rotate: rotate(90deg);
+}
+
+.dropdown_link {
+    width: fit-content;
+    padding: 1rem 0.4rem;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.1);
+
+    display: flex;  /* Necesario para el checkbox */
+    align-items: center;
+    gap: 10px;  /* a todos los lados */
+
+    position: relative;
+}
+
+.dropdown_link:hover {
+    background-color: #e9e9e9;
+}
+
+.dropdown_arrow {
+    transform: var(--rotate);
+    transition: transform .2s;
+}
+
+.dropdown_check {
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* 0 = Invisible */
+    cursor: pointer;
+
+    position: absolute; /* Ocupa todo el espacio del elemento padre */
+}
+
+.dropdown_content {
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: var(--rows, 0fr);
+
+    transition: grid-template-rows .3s;
+}
+
+.temario_dropdown {
+    width: 100%;
+    list-style: none;
+    line-height: 23px;
+    overflow: hidden;
+}
+
+.temario_unidad {
+    margin-top: 20px;
+}
+
+.unidad_sub {
+    margin-left: 20px;
+}
+
+.unidad_sub * {
+    margin-top: 5px;
+}
+
+@media (max-width: 900px) {
+    .temario_section {
+        width: 95%;
+        align-items: center;
+    }
+}
+
+    

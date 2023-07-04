@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Inicio.module.css";
 import Layout from "../../Layout";
 import DiplomadoCard from "../../components/Cards/Diplomados/DiplomadoCard";
 import { Link } from "react-router-dom";
+import DiplomadoService from "../../services/DiplomadoService";
 const Inicio: React.FC = ({
+    
 }) => {
+    const [stateDiplomado, setStateDiplomado] = useState([]) // Name it however you wish
+    useEffect(() => {
+        DiplomadoService.obtenerDiplomas().then((response) => {
+            setStateDiplomado(response.data);
+        }).catch((err) => {
+            console.log(err);
+        });
+    }, []);
     return (
         <>
             <Layout>
                 <main>
                     <section className={style.welcome}>
-                        <img src="/centro.jpg" alt="sitio-en-desarrollo" />
+                        <img src="/centro.jpg" alt="sitio-en-desarrollo"/>
                         <i className="back-color">  </i>
                         <h1><i className="fa fa-user-graduate"></i>&nbsp; Centro Certificador de Estudios Especializados</h1>
                         <h2><i className="fa fa-book"></i> &nbsp; "Aquí inicia tu viaje."</h2>
@@ -20,21 +30,13 @@ const Inicio: React.FC = ({
                         <h2 className={style.recientes}>Diplomados Recientes</h2>
 
                         <article className={style.diplomados_container}>
-                            <DiplomadoCard titulo={"Funcion Policial y Derechos Humanos."} parrafo={"El objetivo será establecer los procedimientos que debe seguir el policía en su actuación con apego a los principios de la legalidad, objetividad, ética, eficiencia y respeto a los derechos humanos."} 
-                            img={"/files/2023-04/FuncionPolicial/Funcion_Policial_Thumbnail.jpg"} 
-                            refart={"diplomados-2023-04-funcionPolicial"}/>
-
-                            <DiplomadoCard titulo={"Medicina Forense."} parrafo={"El alumno conocerá la implementación del método científico, desarrollará técnicas que vayan en pro de la resolución de problemas, así como la organización y planificación de la investigación aplicando un análisis crítico y poder realizar el informe criminalístico."} 
-                            img={"/files/2023-04/MedicinaForense/Medicina_Forense_Thumbnail.jpg"}
-                            refart={"diplomados-2023-04-funcionPolicial"}/>
-
-                            <DiplomadoCard titulo={"Seguridad, Control y Prevención de la Violencia Escolar."} parrafo={"La seguridad Escolar busca deducir el conocimiento e incorporarlo en el ámbito educativo cubriendo la parte preventiva primaria de manera externa."} 
-                            img={"/files/2023-04/SeguridadEscolar/Seguridad_Escolar_Thumbnail.jpg"} 
-                            refart={"diplomados-2023-04-funcionPolicial"}/>
-
-                            <DiplomadoCard titulo={"Seguridad Patrimonial y Control de Riesgos."} parrafo={"La 'Seguridad Patrimonial y Control de Riesgos' tiene como propósito gestionar la seguridad de las empresas y de sus integrantes mediante la identificación, medición, control y prevención de los eventos que tienen lugar en el contexto laboral."} 
-                            img={"/files/2023-04/SeguridadPatrimonial/Seguridad_Patrimonial_Thumbnail.jpg"} 
-                            refart={"diplomados-2023-04-funcionPolicial"}/>
+                            {stateDiplomado && stateDiplomado.map((diplomado:any) => (
+                                <Link key={"link "+diplomado.id} to={"/diplomados/diplomado/"+diplomado.id}>
+                                 <DiplomadoCard key={diplomado.id} titulo={diplomado.titulo}
+                                 parrafo={diplomado.objetivo}
+                                 img={diplomado.thumbnail} />
+                                 </Link>
+                            ))}
 
                         </article>
 

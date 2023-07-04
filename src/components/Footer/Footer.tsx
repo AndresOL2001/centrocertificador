@@ -8,11 +8,11 @@ const Footer: React.FC = ({
         <>
            <footer>
         <ul className={style.social_links}>
-            <li><a className="fa-brands fa-whatsapp" href="https://wa.me/527341890671" target="_blank"></a></li>
-            <li><a className="fa-brands fa-facebook" href="https://www.facebook.com/CentroCertificadorDeEstudiosEspecializados/" target="_blank"></a></li>
-            <li><a className="fa-brands fa-instagram" href="https://www.instagram.com/centro_certificador/" target="_blank"></a></li>
-            <li><a className="fa-brands fa-tiktok" href="https://www.tiktok.com/@centrocertificador?lang=es" target="_blank"></a></li>
-            <li><a className="fa-brands fa-linkedin" href="https://www.linkedin.com/company/centro-certificador-de-estudios-especializados/" target="_blank"></a></li>
+            <li><a className="fa-brands fa-whatsapp fa-xl" href="https://wa.me/527341890671" target="_blank"></a></li>
+            <li><a className="fa-brands fa-facebook fa-xl" href="https://www.facebook.com/CentroCertificadorDeEstudiosEspecializados/" target="_blank"></a></li>
+            <li><a className="fa-brands fa-instagram fa-xl" href="https://www.instagram.com/centro_certificador/" target="_blank"></a></li>
+            <li><a className="fa-brands fa-tiktok fa-xl" href="https://www.tiktok.com/@centrocertificador?lang=es" target="_blank"></a></li>
+            <li><a className="fa-brands fa-linkedin fa-xl" href="https://www.linkedin.com/company/centro-certificador-de-estudios-especializados/" target="_blank"></a></li>
         </ul>
 
         <ul className={style.terms_links}>

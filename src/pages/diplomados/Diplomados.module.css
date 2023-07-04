@@ -1,6 +1,7 @@
 /* MAIN */
 main {
-    flex: 1;    /* Ocupa el resto de la pagina que deja el Header y Footer */
+    flex: 1;
+    /* Ocupa el resto de la pagina que deja el Header y Footer */
 
     display: flex;
     flex-direction: column;
@@ -12,15 +13,19 @@ main {
     border: 1px solid darkgrey;
 } */
 
-main > section {    /* Only direct children */
+main>section {
+    /* Only direct children */
     margin-top: 40px;
 }
 
-main > section:first-child {    /* Only the first child of its parent */
+main>section:first-child {
+    /* Only the first child of its parent */
     margin-top: 75px;
 }
 
-main h1, main h2, main h3 {
+main h1,
+main h2,
+main h3 {
     color: rgb(0, 30, 110);
 }
 
@@ -28,20 +33,21 @@ main p {
     line-height: 25px;
 }
 
-    /* TITLE Section */
+/* TITLE Section */
 .title {
     margin-top: 10px;
     margin-bottom: -10px;
     font-size: 32px;
 }
 
-    /* DIPLOMADOS Section */
+/* DIPLOMADOS Section */
 .diplomados {
     width: 75%;
-    margin-bottom: 15px;
+
     display: flex;
     flex-direction: column;
 }
+
 
 .month_year {
     width: fit-content;
@@ -53,12 +59,41 @@ main p {
     align-self: center;
 
     margin-top: 15px;
-    width: 100%; /* 90% para checar bordes*/
+
+    width: 100%;
+    /* 90% para checar bordes*/
 
     display: grid;
     grid-template-columns: repeat(4, 21%);
     justify-content: space-between;
-    grid-gap: 30px 10px; /* Filas - Columnas */
+    grid-gap: 30px 10px;
+    /* Filas - Columnas */
+}
+
+.field {
+    /* display: block; */
+    margin-top: 24px;
+
+    margin-bottom: 24px;
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border-radius: 10px;
+    outline: none;
+    font-family: inherit;
+    font-size: 1.1rem;
+    border: 2px solid rgba(0, 0, 0, 0);
+    background-color: rgb(255, 255, 255);
+
+    transition: background-color .3s ease;
+}
+
+.field:hover {
+    background-color: rgba(0, 25, 130, .1);
+}
+
+.field:focus {
+    background-color: #ffffff;
+    border: 2px solid rgba(30, 85, 250, 0.4);
 }
 
 .flyer_img {
@@ -67,10 +102,6 @@ main p {
 }
 
 @media (max-width: 900px) {
-    main > section:first-child {
-        margin-top: 0;
-    }
-
     .title {
         margin-top: 0;
     }
@@ -84,4 +115,5 @@ main p {
         grid-gap: 30px 5px;
     }
 }
+
 /* --- MAIN --- */

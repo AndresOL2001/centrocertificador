@@ -1,43 +1,31 @@
-/* FOOTER */
 footer {
     width: 100%;
-    height: auto;
-    padding: 0px 0px;
-    font-size: .85rem;
-    font-weight: 400;
+    padding: 12px 0 4px;
+    font-size: 14px;
+    background-color: #045474d3;    /* BLUE COLOR */
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: #045474d3;    /* BLUE COLOR */
-}
-
-footer * {
-    /* border: 1px solid darkgrey; */
-    margin: 5px 0;
+    gap: 12px;
 }
 
 footer ul {
     list-style: none;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 .social_links {
-    width: 30%;
-
-    display: flex;
-    justify-content: center;
-}
-
-.social_links li {
-    margin: 0px 20px;
-    margin-top: 2px;
-    font-size: 1.5rem;
+    gap: 36px;
+    flex-wrap: wrap;
 }
 
 .social_links a {
-    padding: 0 15px;
-    transition: all 0.15s ease 0s;
+    padding: 0 16px;
+    transition: color 0.15s ease, transform .15s ease;
 }
 
 .social_links a:hover {
@@ -45,12 +33,12 @@ footer ul {
     transform: scale(1.7);
 }
 
-.terms_links {
-    width: 20%;
-    text-align: initial;
+.social_links .fa-brands {
+    font-size: 1.7rem;
+}
 
-    display: flex;
-    justify-content: space-between;
+.terms_links {
+    gap: 16px;
 }
 
 .terms_links a:hover {
@@ -58,15 +46,17 @@ footer ul {
     text-decoration: underline;
 }
 
-@media (max-width: 900px) { /* Responsive (Aplicará esto si el ViewPort es menor a 901px) */
+@media (max-width: 450px) { /* Responsive (Aplicará esto si el ViewPort es menor a 901px) */
     .social_links {
-        width: 100%;
+        gap: 12px;
     }
     
     .terms_links {
-        width: 50%;
-
         flex-direction: column;
         align-items: center;
+    }
+
+    .terms_links, .copyright {
+        text-align: center;
     }
 }

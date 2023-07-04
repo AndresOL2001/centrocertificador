@@ -11,6 +11,13 @@
   margin-top:16px;
   width:30% ;
 }
+.selectedbutton{
+  opacity: 0.5;
+}
+.margin{
+  margin-right: 5px;
+}
+
 .submitbutton {
   width: 30%;
   padding: 0.6rem 0rem;
@@ -23,7 +30,31 @@
 
   transition: background-color .2s ease;
 }
+.field {
+  /* display: block; */
+  margin-top: 24px;
 
+  margin-bottom: 24px;
+  width: 30%;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  outline: none;
+  font-family: inherit;
+  font-size: 1.1rem;
+  border: 2px solid rgba(0, 0, 0, 0);
+  background-color: rgb(255, 255, 255);
+
+  transition: background-color .3s ease;
+}
+
+.field:hover {
+  background-color: rgba(0, 25, 130, .1);
+}
+
+.field:focus {
+  background-color: #ffffff;
+  border: 2px solid rgba(30, 85, 250, 0.4);
+}
 .submitbutton:hover {
   background-color: #084d7a;
   cursor: pointer;

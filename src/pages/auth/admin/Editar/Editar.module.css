@@ -43,7 +43,10 @@ main > section {    /* Only direct children */
     flex-direction: column;
     justify-content: space-between;
 }
-
+.iconclose{
+    margin-left: 10px;
+    cursor:pointer;
+}
 .presentacion {
     line-height: 25px;
 }
