@@ -3,8 +3,8 @@ const obtenerToken = () => {
   return localStorage.getItem("token");
 }
 
-const url = 'http://localhost:5000';
-//const url = 'http://185.211.4.103:5000'
+//const url = 'http://localhost:5000';
+const url = 'http://185.211.4.103:5000'
  
 const crearContenidoBlog = (blogCreacionDTO: any) => {
   let token = obtenerToken();

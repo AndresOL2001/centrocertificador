@@ -61,7 +61,6 @@ const Diplomados: React.FC = ({
 
     return (
         <>
-            <Layout>
                 <main>
                     <section>
                         <h1 className={style.title}>DIPLOMADOS</h1>
@@ -93,7 +92,6 @@ const Diplomados: React.FC = ({
                     ))}
                            
                 </main>
-            </Layout>
         </>
     );
 };

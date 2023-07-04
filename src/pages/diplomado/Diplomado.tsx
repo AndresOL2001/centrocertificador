@@ -79,7 +79,7 @@ const Diplomado: React.FC = ({
       };
 
     return (
-        <Layout>
+        <>
 
             <section className={style.flyer_section}>
                 <img className={style.flyer_img} src={stateDiplomado.imagen} alt="flyer" />
@@ -227,7 +227,7 @@ const Diplomado: React.FC = ({
                 <i className={style.margin_icon}>Una vez inscrito se hará llegar un correo de confirmación donde contendrá la información necesaria para acceder al curso.</i>
             </section>
 
-        </Layout>
+            </>
     )
 }
 

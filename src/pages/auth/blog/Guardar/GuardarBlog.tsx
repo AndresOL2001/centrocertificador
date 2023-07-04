@@ -311,7 +311,7 @@ const GuardarBlog: React.FC = ({
     };
 
     return (
-        <Layout>
+        <>
             <form className={style.form} onSubmit={handleSubmit}>
                 <section className={style.flyer_section}>
                     <div className={style.flyer_container}>
@@ -409,8 +409,8 @@ const GuardarBlog: React.FC = ({
                 <button type="submit" style={{ marginBottom: '20px' }} className={style.submitbutton}>Guardar Diploma </button>
 
             </form>
-        </Layout>
-    )
+            </>
+                )
 }
 
 export default GuardarBlog;

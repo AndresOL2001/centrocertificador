@@ -11,7 +11,7 @@ const Navbar: React.FC = ({
         <>
             <header>
                 <a className={style.logo}>
-                    <img className={style.headerimg} src={imgUrl} alt="logo" />
+                    <img className={style.headerimg} src={imgUrl} alt="logo" loading="lazy"/>
                 </a>
                 <nav className={style.menu}>
                     <ul className={style.nav_links}>

@@ -38,7 +38,6 @@ const Login: React.FC = ({
 
     return (
         <>
-            <Layout>
                 
                     <div>
 
@@ -71,7 +70,6 @@ const Login: React.FC = ({
                         </form>
                     </section>
                     
-            </Layout>
         </>
     );
 };

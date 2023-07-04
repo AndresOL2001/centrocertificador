@@ -18,24 +18,24 @@ const Blog: React.FC = ({
     }, []);
 
     return (
-        <Layout>
-                <section className={style.diplomados}>
-                        <h2 className={style.recientes}>Blog</h2>
-                        {stateBlogs && stateBlogs.map((x:any) => (
-                          <>
-                           <article className={style.margen_inferior}>
-                              <h1 className={style.margen_inferior}>{x.encabezado} - <span>{x.autor}</span></h1>
-{/*                              <img src="/sict.jpg" className={style.img_blog} alt="Secretaria de Innovacion, Ciencia y Tecnologia" />
+        <>
+            <section className={style.diplomados}>
+                <h2 className={style.recientes}>Blog</h2>
+                {stateBlogs && stateBlogs.map((x: any) => (
+                    <>
+                        <article className={style.margen_inferior}>
+                            <h1 className={style.margen_inferior}>{x.encabezado} - <span>{x.autor}</span></h1>
+                            {/*                              <img src="/sict.jpg" className={style.img_blog} alt="Secretaria de Innovacion, Ciencia y Tecnologia" />
  */}                             <h4 className={style.margen_inferior}>Fecha: {x.fecha}</h4>
                             <p>{x.sinopsis}</p>
-                            <Link to={"/blog/"+x.blog_id}>
-                            <button className={`${style.btnmostrar} ${style.margen_inferior}`}>Leer más</button>
+                            <Link to={"/blog/" + x.blog_id}>
+                                <button className={`${style.btnmostrar} ${style.margen_inferior}`}>Leer más</button>
                             </Link>
-                            </article>
-                          </>  
-                        ))}
-                    </section>
-        </Layout>
+                        </article>
+                    </>
+                ))}
+            </section>
+        </>
     )
 }
 

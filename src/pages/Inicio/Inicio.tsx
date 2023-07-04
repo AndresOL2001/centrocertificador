@@ -17,7 +17,6 @@ const Inicio: React.FC = ({
     }, []);
     return (
         <>
-            <Layout>
                 <main>
                     <section className={style.welcome}>
                         <img src="/centro.jpg" alt="sitio-en-desarrollo"/>
@@ -124,7 +123,6 @@ const Inicio: React.FC = ({
                         </form>
                     </section>
                 </main>
-            </Layout>
         </>
     );
 };

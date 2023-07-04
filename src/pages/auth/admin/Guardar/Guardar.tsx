@@ -193,7 +193,7 @@ const Guardar: React.FC = ({
     };
 
     return (
-        <Layout>
+        <>
             <form className={style.form} onSubmit={handleSubmit}>
                 <section className={style.flyer_section}>
                     {/*  { file && <img className={style.flyer_img} src={file}/>} */}
@@ -292,7 +292,7 @@ const Guardar: React.FC = ({
                 <button type="submit" style={{ marginBottom: '20px' }} className={style.submitbutton}>Guardar Diploma </button>
 
             </form>
-        </Layout>
+        </>
     )
 }
 

@@ -8,7 +8,7 @@ const renderObject = (object: any) => {
     switch (object.tipo) {
         case 'imagen':
             return (
-                 <img className={style.imagen_blog} src={object.contenido}></img>
+                <img className={style.imagen_blog} src={object.contenido}></img>
             );
         case 'parrafo':
             return (
@@ -48,14 +48,13 @@ const MetadataBlog: React.FC = ({
         });
     }, []);
     return (
-        <Layout>
-            
+        <>
             <section className={style.diplomados}>
                 {stateMetadataBlog.map((object: any) => (
                     <div key={object.orden}>{renderObject(object)}</div>
                 ))}
             </section>
-        </Layout>
+        </>
     )
 }
 

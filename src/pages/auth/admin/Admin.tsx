@@ -99,7 +99,6 @@ const Admin: React.FC = ({
 
     return (
         <>
-            <Layout>
 
                 <section className={style.admin_container}>
                     {!stateBooleanDiplomado && <Link to={"/admin/guardar"}><button className={`${style.submitbutton} ${style.btnagregar} ${style.margin}`}>+ Agregar Nuevo Diplomado</button></Link>}
@@ -188,7 +187,6 @@ const Admin: React.FC = ({
 
                 </section>
 
-            </Layout>
         </>
     );
 };
