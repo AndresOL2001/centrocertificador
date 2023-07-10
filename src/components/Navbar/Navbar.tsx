@@ -42,7 +42,7 @@ const Navbar: React.FC = ({
                     </ul>
                 </nav>
                 <nav className={style.dropdown_menu}>
-                    <i className="fa-solid fa-bars"></i><input type="checkbox" className={style.dropdown_menu_check}/>
+                    <i className="fa-solid fa-bars" style={{'color':'white'}}></i><input type="checkbox" className={style.dropdown_menu_check}/>
                 </nav>
             </header>
         </>

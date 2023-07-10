@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../Layout";
 import style from "./Diplomados.module.css";
 import DiplomadoCard from "../../components/Cards/Diplomados/DiplomadoCard";
 import { Link } from "react-router-dom";

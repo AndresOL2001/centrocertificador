@@ -1,4 +1,3 @@
-import Layout from "../../../../Layout"
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 import style from "./GuardarBlog.module.css";

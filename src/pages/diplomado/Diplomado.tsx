@@ -1,4 +1,3 @@
-import Layout from "../../Layout"
 import React, { useEffect, useState } from "react";
 import style from "./Diplomado.module.css";
 import DiplomadoService from "../../services/DiplomadoService";
@@ -18,6 +17,8 @@ let diplomadoFromDb = {
     pago: 0,
     asesor: '',
     inscripcion: 0,
+    certificacion:0,
+    apartado:0,
     mensualidades: '',
     whatsapp: '',
     brochure: '',
@@ -118,6 +119,9 @@ const Diplomado: React.FC = ({
                             <p><span className={style.top_span}>PAGO UNICO</span> <br /> ${nf.format(stateDiplomado.pago)} MXN</p>
                             <p><span>MENSUALIDADES</span> <br /> {stateDiplomado.mensualidades}</p>
                             <p><span>INSCRIPCION</span> <br /> ${nf.format(stateDiplomado.inscripcion)} MXN</p>
+                            {stateDiplomado.certificacion > 0 && <p><span>CERTIFICACION</span> <br /> ${nf.format(stateDiplomado.certificacion)} MXN</p>}
+                            {stateDiplomado.apartado > 0 && <p><span>APARTADO</span> <br /> ${nf.format(stateDiplomado.apartado)} MXN</p>}
+
                             <p><span>Asesor(a):</span> {stateDiplomado.asesor}</p>
                             <br />
                         </div>

@@ -1,4 +1,3 @@
-import Layout from "../../../../Layout"
 import React, { useState } from "react";
 import style from "../Editar/Editar.module.css";
 import DiplomadoService from "../../../../services/DiplomadoService";
@@ -16,6 +15,8 @@ const diplomado = {
     pago: 0,
     asesor: '',
     inscripcion: 0,
+    certificacion:'',
+    apartado:'',
     mensualidades: '',
     whatsapp: '',
     brochure:'',
@@ -232,6 +233,9 @@ const Guardar: React.FC = ({
                                 <p><span className={style.top_span}>PAGO UNICO</span> <br /> <input name="pago"type="number" min="0" onChange={handleInputChange} className={style.field} defaultValue={stateDiplomado.pago} /></p>
                                 <p><span>MENSUALIDADES</span> <br /><input className={style.field} name="mensualidades" onChange={handleInputChange} defaultValue={stateDiplomado.mensualidades} /> </p>
                                 <p><span>INSCRIPCION</span> <br /> <input className={style.field}  type="number" min="0" name="inscripcion" onChange={handleInputChange} defaultValue={stateDiplomado.inscripcion} /></p>
+                                <p><span>CERTFIFICACION</span> <br /> <input className={style.field}  type="number" min="0" name="certificacion" onChange={handleInputChange} defaultValue={stateDiplomado.certificacion} /></p>
+                                <p><span>APARTADO</span> <br /> <input className={style.field}  type="number" min="0" name="apartado" onChange={handleInputChange} defaultValue={stateDiplomado.apartado} /></p>
+
                                 <p><span>Asesor(a):</span><input className={style.field} name="asesor" onChange={handleInputChange} defaultValue={stateDiplomado.asesor} /> </p>
                             </div>
                         </article>

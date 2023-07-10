@@ -1,4 +1,3 @@
-import Layout from "../../../../Layout"
 import React, { useEffect, useState } from "react";
 import style from "./Editar.module.css";
 import DiplomadoService from "../../../../services/DiplomadoService";
@@ -18,6 +17,8 @@ const diplomado = {
     pago: 0,
     asesor: '',
     inscripcion: 0,
+    certificacion:0,
+    apartado:0,
     mensualidades: '',
     whatsapp: '',
     thumbnail: '',
@@ -272,6 +273,8 @@ const Editar: React.FC = ({
                             <div className={style.infoPagos_card}>
                                 <p><span className={style.top_span}>PAGO UNICO</span> <br /> <input name="pago" type="number" min="0" onChange={handleInputChange} className={style.field} value={stateDiplomado.pago} /></p>
                                 <p><span>MENSUALIDADES</span> <br /><input className={style.field} name="mensualidades" onChange={handleInputChange} defaultValue={stateDiplomado.mensualidades} /> </p>
+                                <p><span>CERTFIFICACION</span> <br /> <input className={style.field}  type="number" min="0" name="certificacion" onChange={handleInputChange} defaultValue={stateDiplomado.certificacion} /></p>
+                                <p><span>APARTADO</span> <br /> <input className={style.field}  type="number" min="0" name="apartado" onChange={handleInputChange} defaultValue={stateDiplomado.apartado} /></p>
                                 <p><span>INSCRIPCION</span> <br /> <input className={style.field} type="number" min="0" name="inscripcion" onChange={handleInputChange} value={stateDiplomado.inscripcion} /></p>
                                 <p><span>Asesor(a):</span><input className={style.field} name="asesor" onChange={handleInputChange} defaultValue={stateDiplomado.asesor} /> </p>
                             </div>

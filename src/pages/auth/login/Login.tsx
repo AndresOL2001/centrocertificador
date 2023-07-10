@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import style from "./Login.module.css";
-import Layout from "../../../Layout";
 import DiplomadoService from "../../../services/DiplomadoService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";

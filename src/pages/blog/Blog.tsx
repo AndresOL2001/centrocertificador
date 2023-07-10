@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Layout from "../../Layout";
 import BlogService from "../../services/BlogService";
 import style from "./blog.module.css";
 import React, { useEffect, useState } from "react";

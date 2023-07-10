@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import style from "./admin.module.css";
-import Layout from "../../../Layout";
 import { Link } from "react-router-dom";
 import DiplomadoService from "../../../services/DiplomadoService";
 import Swal from "sweetalert2";

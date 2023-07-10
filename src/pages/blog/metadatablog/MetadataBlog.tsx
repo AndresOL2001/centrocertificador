@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import Layout from "../../../Layout";
 import style from "./metadatablog.module.css";
 import React, { useEffect, useState } from "react";
 import BlogService from "../../../services/BlogService";

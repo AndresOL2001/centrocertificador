@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import style from "./Inicio.module.css";
-import Layout from "../../Layout";
 import DiplomadoCard from "../../components/Cards/Diplomados/DiplomadoCard";
 import { Link } from "react-router-dom";
 import DiplomadoService from "../../services/DiplomadoService";
