@@ -17,8 +17,8 @@ let diplomadoFromDb = {
     pago: 0,
     asesor: '',
     inscripcion: 0,
-    certificacion:0,
-    apartado:0,
+    certificacion:'',
+    apartado:'',
     mensualidades: '',
     whatsapp: '',
     brochure: '',
@@ -41,7 +41,6 @@ let meses: any = {
     "12": "Diciembre"
 }
 
-const nf = new Intl.NumberFormat();
 
 const Diplomado: React.FC = ({
 
@@ -113,16 +112,16 @@ const Diplomado: React.FC = ({
                             <p><span className={style.top_span}>FECHA</span> <br />{stateDiplomado.fecha}</p>
                             <p><span>DURACION</span> <br />{stateDiplomado.duracion}</p>
                             <p><span>CLASES</span> <br /> {stateDiplomado.horario}<br /> (Horario Centro de Mexico)</p>
+                            <p><span>Asesor(a):</span> {stateDiplomado.asesor}</p>
                             <br />
                         </div>
                         <div className={style.infoPagos_card}>
-                            <p><span className={style.top_span}>PAGO UNICO</span> <br /> ${nf.format(stateDiplomado.pago)} MXN</p>
+                            <p><span className={style.top_span}>PAGO UNICO</span> <br /> {stateDiplomado.pago}</p>
                             <p><span>MENSUALIDADES</span> <br /> {stateDiplomado.mensualidades}</p>
-                            <p><span>INSCRIPCION</span> <br /> ${nf.format(stateDiplomado.inscripcion)} MXN</p>
-                            {stateDiplomado.certificacion > 0 && <p><span>CERTIFICACION</span> <br /> ${nf.format(stateDiplomado.certificacion)} MXN</p>}
-                            {stateDiplomado.apartado > 0 && <p><span>APARTADO</span> <br /> ${nf.format(stateDiplomado.apartado)} MXN</p>}
+                            <p><span>INSCRIPCION</span> <br /> {stateDiplomado.inscripcion}</p>
+                            {stateDiplomado.certificacion != null && <p><span>CERTIFICACION</span> <br /> {stateDiplomado.certificacion} </p>}
+                            {stateDiplomado.apartado != null && <p><span>APARTADO</span> <br /> {stateDiplomado.apartado} </p>}
 
-                            <p><span>Asesor(a):</span> {stateDiplomado.asesor}</p>
                             <br />
                         </div>
                     </article>

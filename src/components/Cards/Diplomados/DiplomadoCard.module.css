@@ -3,7 +3,8 @@
     padding: 12px 12px 0 12px;
     background-color: aliceblue;
     /* border: 1px solid rgba(10, 25, 155, 0.4); */
-    
+    border-radius: 10px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +27,6 @@
 .diplomado_card i {
     position: absolute;
     top: 0;
-    
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -47,7 +47,7 @@
     padding: 12px 12px 0 12px;
     background-color: aliceblue;
     border: 1px solid rgba(10, 25, 156, 0.4);
-
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;

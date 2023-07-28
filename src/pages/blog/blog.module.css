@@ -152,6 +152,7 @@ main p {
 }
 .margen_inferior{
     margin-bottom: 10px;
+    margin-right: auto;
 }
 
 .btnmostrar {

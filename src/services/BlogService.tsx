@@ -3,9 +3,9 @@ const obtenerToken = () => {
   return localStorage.getItem("token");
 }
 
-const url = 'http://localhost:5000';
-//const url = 'http://185.211.4.103:5000'
- 
+/*   const url = 'http://localhost:5000'; 
+ */     const url = 'http://185.211.4.103:5000' 
+  
 const crearContenidoBlog = (blogCreacionDTO: any) => {
   let token = obtenerToken();
   const config = {
@@ -66,8 +66,11 @@ const obtenerBlogPorId = (id: number) => {
 
 
 const eliminarBlogPorId = (id: number) => {
-
-  return axios.delete(`${url}/api/blog/` + id);
+  let token = obtenerToken();
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+  };
+  return axios.delete(`${url}/api/blog/` + id,config);
 }
 
 const editarBlogPorId = (metadataBlogCreacionDTOtest: any, id: number) => {

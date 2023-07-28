@@ -17,7 +17,7 @@ const DiplomadoCard: React.FC<IDiplomadoCard> = ({
 }) => {
     return (
         <>
-            <a className={(bordeado == true) ? `${style.bordercard}` : `` + `${style.diplomado_card} `}>
+            <div className={(bordeado == true) ? `${style.bordercard}` : `` + `${style.diplomado_card} `}>
                 <img
                     className={`${style.flyer_img}`}
                     src={img}
@@ -31,7 +31,7 @@ const DiplomadoCard: React.FC<IDiplomadoCard> = ({
                     {parrafo}
                 </p>
                 <i></i>
-            </a>
+            </div>
         </>
     )
 }

@@ -14,7 +14,8 @@ const Admin: React.FC = ({
     function obtenerDiplomas(setStateDiplomado: React.Dispatch<React.SetStateAction<never[]>>) {
 
         DiplomadoService.obtenerDiplomas().then((response) => {
-            setStateDiplomado(response.data);
+            console.log(response);
+            setStateDiplomado(response.data.sort((a:any,b:any) => a.fecha > b.fecha ? -1 : a.fecha < b.fecha ? 1 : 0));
         }).catch((err) => {
             console.log(err);
         });
@@ -70,7 +71,7 @@ const Admin: React.FC = ({
             if (result.isConfirmed) {
                 BlogService.eliminarBlogPorId(id).then(() => {
                     obtenerBlogs(setStateBlog);
-                    Swal.fire('Correcto!', 'Diplomado eliminado correctamente', 'success')
+                    Swal.fire('Correcto!', 'Articulo eliminado correctamente', 'success')
                 }).catch(err => {
                     Swal.fire('Error!', err.error.message, 'error')
 
@@ -172,7 +173,7 @@ const Admin: React.FC = ({
                                             }</td>
 
                                             <td data-label="Period" ><Link to={"/admin/blog/editar/" + x.blog_id}> <button type="button" className={style.submitbutton}> Editar </button> </Link></td>
-                                            <td data-label="Period" > <button type="button" onClick={() => eliminarBlog(x.id)} className={style.submitbutton}> Eliminar </button></td>
+                                            <td data-label="Period" > <button type="button" onClick={() => eliminarBlog(x.blog_id)} className={style.submitbutton}> Eliminar </button></td>
                                         </tr>
 
                                     </>

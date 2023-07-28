@@ -14,11 +14,11 @@ const diplomado = {
     fecha: '',
     duracion: '',
     horario: '',
-    pago: 0,
+    pago: '',
     asesor: '',
-    inscripcion: 0,
-    certificacion:0,
-    apartado:0,
+    inscripcion: '',
+    certificacion:'',
+    apartado:'',
     mensualidades: '',
     whatsapp: '',
     thumbnail: '',
@@ -188,6 +188,8 @@ const Editar: React.FC = ({
 
     const handleInputChange = (event: any) => {
         const { name, value } = event.target;
+       /*  console.log(value);
+        console.log(name); */
         setStateDiplomado((prevProps) => ({
             ...prevProps,
             [name]: value
@@ -216,8 +218,8 @@ const Editar: React.FC = ({
         }));
     }
     function eliminarTemaFromUnidadDiplomado(unidad:any,itemToRemove: any,):void{
-        console.log(unidad);
-        const nextDiplomado = {
+/*         console.log(unidad);
+ */        const nextDiplomado = {
             ...stateDiplomado, unidad: stateDiplomado.unidad.map((c: any) => {
                 if (c === unidad) {
 
@@ -243,23 +245,23 @@ const Editar: React.FC = ({
                     <div className={style.flyer_container}>
                         <article className={style.presentacion}>
                             <h1 className={style.diplomado}>Titulo</h1>
-                            <input type="text" name="titulo" onChange={handleInputChange} className={style.field} defaultValue={stateDiplomado.titulo} />
+                            <input type="text" name="titulo" onChange={handleInputChange} className={style.field} value={stateDiplomado.titulo} />
                             <br />
                             <h1 className={style.diplomado}>Proposito</h1>
-                            <textarea className={style.field} rows={9} name="proposito" onChange={handleInputChange} defaultValue={stateDiplomado.proposito}>
+                            <textarea className={style.field} rows={9} name="proposito" onChange={handleInputChange} value={stateDiplomado.proposito}>
 
                             </textarea>
                         </article>
 
                         <article className={style.presentacion}>
                             <h3>Objetivo</h3>
-                            <textarea className={style.field} rows={7} name="objetivo" onChange={handleInputChange} defaultValue={stateDiplomado.objetivo}>
+                            <textarea className={style.field} rows={7} name="objetivo" onChange={handleInputChange} value={stateDiplomado.objetivo}>
                             </textarea>
                         </article>
 
                         <article className={style.presentacion}>
                             <h3>Dirigído a...</h3>
-                            <textarea className={style.field} rows={5} name="dirigido" onChange={handleInputChange} defaultValue={stateDiplomado.dirigido}>
+                            <textarea className={style.field} rows={5} name="dirigido" onChange={handleInputChange} value={stateDiplomado.dirigido}>
 
                             </textarea>
                         </article>
@@ -267,22 +269,22 @@ const Editar: React.FC = ({
                         <article className={style.infoPagos_container}>
                             <div className={style.infoPagos_card}>
                                 <p><span className={style.top_span}>FECHA</span> <br /> <input className={style.field} type="date" name="fecha" onChange={handleInputChange} defaultValue={stateDiplomado.fecha} /></p>
-                                <p><span>DURACION</span> <br /><input className={style.field} name="duracion" onChange={handleInputChange} defaultValue={stateDiplomado.duracion} /></p>
-                                <p><span>CLASES</span> <br /> <input className={style.field} name="horario" onChange={handleInputChange} defaultValue={stateDiplomado.horario} /><br /> (Horario Centro de Mexico)</p>
+                                <p><span>DURACION</span> <br /><input className={style.field} name="duracion" onChange={handleInputChange} value={stateDiplomado.duracion} /></p>
+                                <p><span>CLASES</span> <br /> <input className={style.field} name="horario" onChange={handleInputChange} value={stateDiplomado.horario} /><br /> (Horario Centro de Mexico)</p>
+                                <p><span>Asesor(a):</span><input className={style.field} name="asesor" onChange={handleInputChange} value={stateDiplomado.asesor} /> </p>
                             </div>
                             <div className={style.infoPagos_card}>
-                                <p><span className={style.top_span}>PAGO UNICO</span> <br /> <input name="pago" type="number" min="0" onChange={handleInputChange} className={style.field} value={stateDiplomado.pago} /></p>
-                                <p><span>MENSUALIDADES</span> <br /><input className={style.field} name="mensualidades" onChange={handleInputChange} defaultValue={stateDiplomado.mensualidades} /> </p>
-                                <p><span>CERTFIFICACION</span> <br /> <input className={style.field}  type="number" min="0" name="certificacion" onChange={handleInputChange} defaultValue={stateDiplomado.certificacion} /></p>
-                                <p><span>APARTADO</span> <br /> <input className={style.field}  type="number" min="0" name="apartado" onChange={handleInputChange} defaultValue={stateDiplomado.apartado} /></p>
-                                <p><span>INSCRIPCION</span> <br /> <input className={style.field} type="number" min="0" name="inscripcion" onChange={handleInputChange} value={stateDiplomado.inscripcion} /></p>
-                                <p><span>Asesor(a):</span><input className={style.field} name="asesor" onChange={handleInputChange} defaultValue={stateDiplomado.asesor} /> </p>
+                                <p><span className={style.top_span}>PAGO UNICO</span> <br /> <input type="text" name="pago" onChange={handleInputChange} className={style.field} value={stateDiplomado.pago} /></p>
+                                <p><span>MENSUALIDADES</span> <br /><input className={style.field} name="mensualidades" onChange={handleInputChange} value={stateDiplomado.mensualidades} /> </p>
+                                <p><span>CERTIFICACION</span> <br /> <input className={style.field}  type="text"  name="certificacion" onChange={handleInputChange} value={stateDiplomado.certificacion} /></p>
+                                <p><span>APARTADO</span> <br /> <input className={style.field}  type="text"  name="apartado" onChange={handleInputChange} value={stateDiplomado.apartado} /></p>
+                                <p><span>INSCRIPCION</span> <br /> <input className={style.field} type="text"name="inscripcion" onChange={handleInputChange} value={stateDiplomado.inscripcion} /></p>
                             </div>
                         </article>
 
                         <article className={style.buttons_container}>
                             <h1>Link Whatsapp </h1>
-                            <input className={style.field} name="whatsapp" onChange={handleInputChange} defaultValue={stateDiplomado.whatsapp} />
+                            <input className={style.field} name="whatsapp" onChange={handleInputChange} value={stateDiplomado.whatsapp} />
                             <h1>Brochure PDF</h1>
                             <input name="brochure" className={style.field} onChange={(e) => handleFileUpload(e, "brochure")} multiple accept="image/*" type="file" />
                         </article>

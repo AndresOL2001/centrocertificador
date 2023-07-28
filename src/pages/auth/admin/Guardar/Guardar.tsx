@@ -12,9 +12,9 @@ const diplomado = {
     fecha: '',
     duracion: '',
     horario: '',
-    pago: 0,
+    pago: '',
     asesor: '',
-    inscripcion: 0,
+    inscripcion: '',
     certificacion:'',
     apartado:'',
     mensualidades: '',
@@ -228,15 +228,15 @@ const Guardar: React.FC = ({
                                 <p><span className={style.top_span}>FECHA</span> <br /> <input className={style.field} name="fecha" type="date" onChange={handleInputChange} defaultValue={stateDiplomado.fecha} /></p>
                                 <p><span>DURACION</span> <br /><input className={style.field} name="duracion" onChange={handleInputChange} defaultValue={stateDiplomado.duracion} /></p>
                                 <p><span>CLASES</span> <br /> <input className={style.field} name="horario" onChange={handleInputChange} defaultValue={stateDiplomado.horario} /><br /> (Horario Centro de Mexico)</p>
+                                <p><span>Asesor(a):</span><input className={style.field} name="asesor" onChange={handleInputChange} defaultValue={stateDiplomado.asesor} /> </p>
                             </div>
                             <div className={style.infoPagos_card}>
-                                <p><span className={style.top_span}>PAGO UNICO</span> <br /> <input name="pago"type="number" min="0" onChange={handleInputChange} className={style.field} defaultValue={stateDiplomado.pago} /></p>
+                                <p><span className={style.top_span}>PAGO UNICO</span> <br /> <input name="pago"type="text"  onChange={handleInputChange} className={style.field} defaultValue={stateDiplomado.pago} /></p>
                                 <p><span>MENSUALIDADES</span> <br /><input className={style.field} name="mensualidades" onChange={handleInputChange} defaultValue={stateDiplomado.mensualidades} /> </p>
-                                <p><span>INSCRIPCION</span> <br /> <input className={style.field}  type="number" min="0" name="inscripcion" onChange={handleInputChange} defaultValue={stateDiplomado.inscripcion} /></p>
-                                <p><span>CERTFIFICACION</span> <br /> <input className={style.field}  type="number" min="0" name="certificacion" onChange={handleInputChange} defaultValue={stateDiplomado.certificacion} /></p>
-                                <p><span>APARTADO</span> <br /> <input className={style.field}  type="number" min="0" name="apartado" onChange={handleInputChange} defaultValue={stateDiplomado.apartado} /></p>
+                                <p><span>INSCRIPCION</span> <br /> <input className={style.field}  type="text" name="inscripcion" onChange={handleInputChange} defaultValue={stateDiplomado.inscripcion} /></p>
+                                <p><span>CERTFIFICACION</span> <br /> <input className={style.field}  type="text"  name="certificacion" onChange={handleInputChange} defaultValue={stateDiplomado.certificacion} /></p>
+                                <p><span>APARTADO</span> <br /> <input className={style.field}  type="text"  name="apartado" onChange={handleInputChange} defaultValue={stateDiplomado.apartado} /></p>
 
-                                <p><span>Asesor(a):</span><input className={style.field} name="asesor" onChange={handleInputChange} defaultValue={stateDiplomado.asesor} /> </p>
                             </div>
                         </article>
 

@@ -28,10 +28,10 @@ const Inicio: React.FC = ({
                         <h2 className={style.recientes}>Diplomados Recientes</h2>
 
                         <article className={style.diplomados_container}>
-                            {stateDiplomado && stateDiplomado.map((diplomado:any) => (
+                            {stateDiplomado && stateDiplomado.slice(0,4).map((diplomado:any) => (
                                 <Link key={"link "+diplomado.id} to={"/diplomados/diplomado/"+diplomado.id}>
                                  <DiplomadoCard key={diplomado.id} titulo={diplomado.titulo}
-                                 parrafo={diplomado.objetivo}
+                                 parrafo={diplomado.objetivo.slice(0,370)}
                                  img={diplomado.thumbnail} />
                                  </Link>
                             ))}
