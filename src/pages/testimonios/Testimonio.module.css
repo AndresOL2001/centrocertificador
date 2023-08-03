@@ -1,0 +1,28 @@
+.video__gallery {
+    padding: 0px 16px 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.video__card {
+    max-width: 320px;
+    border-radius: 4px;
+    /* background-color: rgb(205, 220, 235); */
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.40);
+
+    display: grid;
+    place-items: center;
+}
+
+.video__card:has( .video__horizontal ) {
+    max-width: 1280px;
+}
+
+.testimonial {
+    width: 100%;
+    border-radius: 6px;
+}

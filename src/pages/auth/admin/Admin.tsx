@@ -86,15 +86,25 @@ const Admin: React.FC = ({
 
         if (e.target.value.length === 0) {
             obtenerDiplomas(setStateDiplomado);
+            obtenerBlogs(setStateBlog);
+
             return;
         }
-
-        DiplomadoService.obtenerDiplomasPorTitulo(e.target.value).then((resp) => {
-            setStateDiplomado(resp.data);
-
-        }, err => {
-            console.log(err);
-        })
+        if(!stateBooleanDiplomado){
+            DiplomadoService.obtenerDiplomasPorTitulo(e.target.value).then((resp) => {
+                setStateDiplomado(resp.data);
+    
+            }, err => {
+                console.log(err);
+            })
+        }else{
+            BlogService.obtenerBlogPorTermino(e.target.value).then((resp) => {
+                setStateBlog(resp.data);
+            }, err => {
+                console.log(err);
+            })
+        }
+        
     }
 
     return (
@@ -103,6 +113,7 @@ const Admin: React.FC = ({
                 <section className={style.admin_container}>
                     {!stateBooleanDiplomado && <Link to={"/admin/guardar"}><button className={`${style.submitbutton} ${style.btnagregar} ${style.margin}`}>+ Agregar Nuevo Diplomado</button></Link>}
                     {stateBooleanDiplomado && <Link to={"/admin/blog/guardar"}><button className={`${style.submitbutton} ${style.btnagregar} ${style.margin}`}>+ Agregar Contenido Al Blog</button></Link>}
+                    {!stateBooleanDiplomado &&
                     <div>
                         <input type="text"
                             onKeyUp={(e) => handleKeyUp(e)}
@@ -111,6 +122,17 @@ const Admin: React.FC = ({
                             placeholder="Buscar Diplomados "
                             required />
                     </div>
+                  }
+                  {stateBooleanDiplomado &&
+                    <div>
+                        <input type="text"
+                            onKeyUp={(e) => handleKeyUp(e)}
+                            name="nombreUsuario"
+                            className={style.field}
+                            placeholder="Buscar Blogs "
+                            required />
+                    </div>
+                  }
                     <article>
                         <button onClick={() => (setStateBooleanDiplomado((bool) => !bool))} className={`${stateBooleanDiplomado ? `${style.submitbutton} ${style.btnagregar} ${style.margin} ${style.selectedbutton}` : `${style.submitbutton} ${style.btnagregar} ${style.margin}`}`}>Diplomados</button>
                         <button onClick={() => (setStateBooleanDiplomado((bool) => !bool))} className={`${!stateBooleanDiplomado ? `${style.submitbutton} ${style.btnagregar} ${style.margin} ${style.selectedbutton}` : `${style.submitbutton} ${style.btnagregar} ${style.margin}`}`}>Blogs</button>

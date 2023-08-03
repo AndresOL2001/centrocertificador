@@ -4,8 +4,11 @@ const obtenerToken = () => {
 }
 
 /*   const url = 'http://localhost:5000'; 
- */     const url = 'http://185.211.4.103:5000' 
-  
+ */     
+/*  const url = 'http://185.211.4.103:5000'*/
+
+ const url = 'https://centrocertificador.mx'
+
 const crearContenidoBlog = (blogCreacionDTO: any) => {
   let token = obtenerToken();
   const config = {
@@ -14,7 +17,14 @@ const crearContenidoBlog = (blogCreacionDTO: any) => {
 
   return axios.post(`${url}/api/blog`, blogCreacionDTO, config);
 }
+const obtenerBlogPorTermino = (termino: string) => {
+  let token = obtenerToken();
+  const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
 
+  return axios.get(`${url}/api/blog/busqueda/` + termino, config);
+}
 const crearContenidoMetadataBlog = (metadataBlogCreacionDTOtest: any, imagesDTO: any) => {
   let formData = new FormData();
   let token = obtenerToken();
@@ -70,7 +80,7 @@ const eliminarBlogPorId = (id: number) => {
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   };
-  return axios.delete(`${url}/api/blog/` + id,config);
+  return axios.delete(`${url}/api/blog/` + id, config);
 }
 
 const editarBlogPorId = (metadataBlogCreacionDTOtest: any, id: number) => {
@@ -86,11 +96,11 @@ const editarContenidoMetadataPorBlogId = (metadataBlogCreacionDTOtest: any, imag
   let token = obtenerToken();
   let ordenImagesDTO: any = [];
   let metadataIdsDTO: any = [];
-   imagesDTO.forEach((x: any) => {
+  imagesDTO.forEach((x: any) => {
 
-    if(x.metadata_id !=null){
-     metadataIdsDTO.push(x.metadata_id);
-    }else{
+    if (x.metadata_id != null) {
+      metadataIdsDTO.push(x.metadata_id);
+    } else {
       metadataIdsDTO.push(0);
 
     }
@@ -101,7 +111,7 @@ const editarContenidoMetadataPorBlogId = (metadataBlogCreacionDTOtest: any, imag
 
     ordenImagesDTO.push(x.orden);
 
-  }); 
+  });
 
   const json = JSON.stringify(metadataBlogCreacionDTOtest);
   const metadataBlogCreacionDTO = new Blob([json], {
@@ -130,12 +140,14 @@ const editarContenidoMetadataPorBlogId = (metadataBlogCreacionDTOtest: any, imag
 }
 
 
-export default { 
-  crearContenidoBlog, 
-  crearContenidoMetadataBlog, 
-  obtenerBlogs, 
+export default {
+  crearContenidoBlog,
+  crearContenidoMetadataBlog,
+  obtenerBlogs,
   obtenerMetadataPorBlogId,
-  eliminarBlogPorId, 
-  obtenerBlogPorId, 
+  eliminarBlogPorId,
+  obtenerBlogPorId,
   editarBlogPorId,
-  editarContenidoMetadataPorBlogId }
+  editarContenidoMetadataPorBlogId,
+  obtenerBlogPorTermino
+}

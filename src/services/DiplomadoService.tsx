@@ -4,8 +4,12 @@ const obtenerToken = () => {
     return localStorage.getItem("token");
 }
 
-  /* const prod = 'http://localhost:5000';  */
-    const prod = 'http://185.211.4.103:5000'
+/*   const prod = 'http://localhost:5000';  
+ */
+    /*const prod = 'http://185.211.4.103:5000'*/
+  
+     const prod = 'https://centrocertificador.mx'
+ 
  const obtenerDiplomaPorId = (id: number) => {
     let token = obtenerToken();
     const config = {

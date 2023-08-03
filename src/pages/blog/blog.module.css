@@ -146,7 +146,14 @@ main p {
     border-radius: 10px;
     transition: box-shadow .15s ease;
 }
-    
+.cargando{
+    font-size: 30px;
+}
+
+.cargando_container{
+    display: flex;
+    margin-top: 20px;
+}
 .diplomado_card i:hover {
     box-shadow: inset 0px 0px 130px 10px rgba(0, 25, 130, .20);
 }

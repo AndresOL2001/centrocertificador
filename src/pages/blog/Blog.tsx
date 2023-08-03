@@ -20,7 +20,13 @@ const Blog: React.FC = ({
         <>
             <section className={style.diplomados}>
                 <h2 className={style.recientes}>Blog</h2>
-                {stateBlogs && stateBlogs.map((x: any) => (
+                {stateBlogs.length == 0 &&
+                    <div className={style.cargando_container}>
+                        <span className={style.cargando}>Cargando ... </span>
+                        <i className="fa-solid fa-rotate fa-spin fa-2x"></i>
+                    </div>
+                }
+                {stateBlogs && stateBlogs.reverse().map((x: any) => (
                     <>
                         <article className={style.margen_inferior}>
                             <h1 className={style.margen_inferior}>{x.encabezado} - <span>{x.autor}</span></h1>

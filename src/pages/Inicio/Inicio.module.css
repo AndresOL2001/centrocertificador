@@ -9,7 +9,14 @@ main {
     justify-content: space-between;
     align-items: center;
 }
+.cargando{
+    font-size: 30px;
+}
 
+.cargando_container{
+    display: flex;
+    margin-top: 20px;
+}
 main h1, main h2, main h3 {
     color: rgb(0, 30, 110);
 }
