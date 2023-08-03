@@ -45,6 +45,12 @@ i{
     font-size: 20px;
 }
 
+.flex{
+    display: flex;
+}
+.mt_10{
+    margin-top: 10px;
+}
 .nav_links li a:hover {
     color: #045474;
     background-color: rgb(240, 240, 240);
@@ -52,7 +58,6 @@ i{
 
 .user {
     width: 75px;
-    visibility: hidden;
 }
 
 .dropdown_menu {

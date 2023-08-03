@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./Navbar.module.css";
 import imgUrl from "../../assets/Logo.png";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { useAuth } from "../../pages/auth/AuthProvider";
 
 const Navbar: React.FC = ({
-
+    
 }) => {
+    const { auth, logout } = useAuth(); // Use the auth state and logout function from the context
+    
     return (
         <>
             <header>
@@ -33,12 +36,17 @@ const Navbar: React.FC = ({
                         <li>
                             <Link to={"/blog"}>Blog</Link>
                         </li>
+                       
                     </ul>
                 </nav>
                 <nav className={style.user}>
                     <ul className={style.nav_links}>
-                        <li><a className="fa fa-user" href="#"></a></li>
-                        <li><a className="fa fa-user-plus" href="#"></a></li>
+                         {auth && 
+                        <li className={style.flex}>
+                            <i className={"bx bx-log-out"} style={{"color":"white","margin":"10px 0 0 0"}}></i>
+                            <Link onClick={() => logout()} to={"/"}>Logout</Link>
+                        </li>
+                            }
                     </ul>
                 </nav>
                 <nav className={style.dropdown_menu}>

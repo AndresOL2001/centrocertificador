@@ -405,7 +405,7 @@ const GuardarBlog: React.FC = ({
                 </section>
 
 
-                <button type="submit" style={{ marginBottom: '20px' }} className={style.submitbutton}>Guardar Diploma </button>
+                <button type="submit" style={{ marginBottom: '20px' }} className={style.submitbutton}>Guardar Blog </button>
 
             </form>
             </>
